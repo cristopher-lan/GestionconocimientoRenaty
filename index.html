@@ -254,5 +254,22 @@
         .catch(err => console.error('❌ Error al registrar Service Worker:', err));
     }
   </script>
+  <!-- BOTÓN FLOTANTE DEL CHAT -->
+<button id="chatBtn" aria-label="Abrir chat">
+  💬
+</button>
+
+<!-- MODAL DEL CHATBOT -->
+<div id="chatModal" class="chat-modal">
+  <div class="chat-content">
+    <button class="close-btn" aria-label="Cerrar chat">✖</button>
+    <iframe
+      src="https://www.chatbase.co/chatbot-iframe/AxFRmFYUeVV2L8qAMOPf2"
+      title="Chatbot IA Clínico"
+      allow="microphone; camera"
+      loading="lazy"
+    ></iframe>
+  </div>
+</div>
 </body>
 </html>
