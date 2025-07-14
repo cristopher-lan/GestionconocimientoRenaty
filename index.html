@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Asistente IA clínico para pacientes y profesionales de salud.">
+  <meta name="author" content="Tu nombre o institución">
+  <title>Agente IA Clínico</title>
+
+  <!-- Fuente moderna -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Ícono para app -->
+  <link rel="icon" href="icon-192.png" />
+  <link rel="apple-touch-icon" href="icon-512.png" />
+  <link rel="manifest" href="manifest.json" />
+
+  <style>
+    /* Mismo CSS que ya tienes, omitido para brevedad */
+    /* Puedes copiar aquí todo el CSS de la versión anterior */
+  </style>
+</head>
+<body>
+  <!-- Loader y contenido HTML como en la versión anterior -->
+  <!-- Aquí puedes reutilizar exactamente el mismo HTML que te di anteriormente -->
+  
+  <!-- Script: Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(reg => console.log('✅ Service Worker registrado:', reg.scope))
+        .catch(err => console.error('❌ Error al registrar Service Worker:', err));
+    }
+  </script>
+</body>
+</html>
