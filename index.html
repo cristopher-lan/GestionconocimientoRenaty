@@ -10,22 +10,237 @@
   <!-- Fuente moderna -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
 
-  <!-- Ícono para app -->
+  <!-- Íconos PWA -->
   <link rel="icon" href="icon-192.png" />
   <link rel="apple-touch-icon" href="icon-512.png" />
   <link rel="manifest" href="manifest.json" />
 
   <style>
-    /* Mismo CSS que ya tienes, omitido para brevedad */
-    /* Puedes copiar aquí todo el CSS de la versión anterior */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #ffffff;
+      background-image: url('Fondo.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      transition: background 0.5s ease-in-out;
+    }
+
+    /* Loader */
+    #loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000000dd;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .spinner {
+      border: 6px solid #38bdf8;
+      border-top: 6px solid transparent;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.75);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
+      width: 90%;
+      max-width: 720px;
+      text-align: center;
+      animation: fadeSlide 1s ease-in-out;
+    }
+
+    .logo {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 20px;
+      border-radius: 50%;
+      box-shadow: 0 0 15px #38bdf8;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      color: #a5f3fc;
+      margin-bottom: 25px;
+    }
+
+    .chatbox-container {
+      margin-top: 20px;
+      height: 700px;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 10px #22d3ee55;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 12px;
+    }
+
+    @keyframes fadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    #goTop {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      background: #38bdf8;
+      color: #000;
+      border: none;
+      border-radius: 50%;
+      padding: 12px 14px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #38bdf8aa;
+      font-size: 18px;
+      display: none;
+      z-index: 999;
+      transition: background 0.3s ease;
+    }
+
+    #goTop:hover {
+      background: #0ea5e9;
+    }
+
+    #whatsappBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25d366;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      padding: 16px;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 0 15px #25d36699;
+      z-index: 998;
+    }
+
+    #whatsappBtn:hover {
+      background-color: #1ebe5d;
+    }
+
+    @media (max-width: 600px) {
+      .overlay {
+        padding: 25px;
+      }
+
+      .logo {
+        width: 70px;
+        height: 70px;
+      }
+
+      h1 {
+        font-size: 1.4rem;
+      }
+
+      .chatbox-container {
+        height: 500px;
+      }
+
+      #goTop {
+        bottom: 85px;
+        right: 15px;
+      }
+
+      #whatsappBtn {
+        bottom: 15px;
+        right: 15px;
+      }
+    }
   </style>
 </head>
 <body>
-  <!-- Loader y contenido HTML como en la versión anterior -->
-  <!-- Aquí puedes reutilizar exactamente el mismo HTML que te di anteriormente -->
-  
-  <!-- Script: Service Worker -->
+  <!-- Loader -->
+  <div id="loader">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Contenido Principal -->
+  <div class="overlay" role="main" aria-label="Agente IA para consultas clínicas">
+    <img src="robot.jpg" alt="Logo del Asistente Inteligente de Salud" class="logo" />
+    <h1><span style="color:#38bdf8">AGENTE IA</span> – Centro Clínico de Salud</h1>
+
+    <div class="chatbox-container">
+      <iframe
+        src="https://www.chatbase.co/chatbot-iframe/AxFRmFYUeVV2L8qAMOPf2"
+        title="Chatbot IA Clínico"
+        allow="microphone; camera"
+        loading="lazy"
+      ></iframe>
+    </div>
+
+    <noscript>
+      <p style="color: #f87171; margin-top: 15px;">
+        ⚠️ Este agente necesita JavaScript para funcionar correctamente.
+      </p>
+    </noscript>
+  </div>
+
+  <!-- Botón Volver Arriba -->
+  <button id="goTop" aria-label="Volver arriba" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">↑</button>
+
+  <!-- Botón WhatsApp -->
+  <a href="https://wa.me/51962706532" target="_blank" aria-label="Chat en WhatsApp">
+    <button id="whatsappBtn">💬</button>
+  </a>
+
+  <!-- Scripts -->
   <script>
+    window.addEventListener('load', () => {
+      document.getElementById('loader').style.display = 'none';
+    });
+
+    const goTopBtn = document.getElementById('goTop');
+    window.addEventListener('scroll', () => {
+      goTopBtn.style.display = window.scrollY > 100 ? 'block' : 'none';
+    });
+
+    // Registrar Service Worker si está disponible
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js')
         .then(reg => console.log('✅ Service Worker registrado:', reg.scope))
