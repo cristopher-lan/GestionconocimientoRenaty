@@ -200,26 +200,27 @@
       }
     }
     /* BOTÓN flotante del chat */
-#chatBtn {
+#whatsappBtn {
   position: fixed;
   bottom: 20px;
-  right: 20px;
-  background-color: #38bdf8;
+  left: 20px; /* <-- antes era "right: 20px" */
+  background-color: #25d366;
   color: white;
   border: none;
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
+  padding: 16px;
   font-size: 24px;
   cursor: pointer;
-  box-shadow: 0 0 15px #38bdf8aa;
-  z-index: 1000;
+  box-shadow: 0 0 15px #25d36699;
+  z-index: 998;
   transition: transform 0.2s ease;
 }
 
-#chatBtn:hover {
+#whatsappBtn:hover {
+  background-color: #1ebe5d;
   transform: scale(1.1);
 }
+
 
 /* MODAL del chatbot */
 .chat-modal {
@@ -346,6 +347,26 @@
   </div>
 </div>
 
+<script>
+  const chatBtn = document.getElementById("chatBtn");
+  const chatModal = document.getElementById("chatModal");
+  const closeBtn = document.querySelector(".close-btn");
+
+  chatBtn.addEventListener("click", () => {
+    chatModal.classList.add("active");
+  });
+
+  closeBtn.addEventListener("click", () => {
+    chatModal.classList.remove("active");
+  });
+
+  // Cierra si tocas fuera del iframe
+  chatModal.addEventListener("click", (e) => {
+    if (e.target === chatModal) {
+      chatModal.classList.remove("active");
+    }
+  });
+</script>
 
 </body>
 </html>
